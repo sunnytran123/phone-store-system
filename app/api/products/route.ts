@@ -5,38 +5,62 @@ export async function GET() {
     {
       id: 1,
       name: "iPhone 15 Pro Max",
+      category: "Điện thoại",
       brand: "Apple",
       price: 34990000,
       image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=1000&auto=format&fit=crop",
       badge: "Mới",
-      specs: { screen: "6.7 inch", storage: "256GB" }
+      specs: { storage: "256GB", extra: "Titanium" }
     },
     {
       id: 2,
-      name: "Samsung Galaxy S24 Ultra",
-      brand: "Samsung",
-      price: 33990000,
-      image: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?q=80&w=1000&auto=format&fit=crop",
+      name: "MacBook Pro 14 M3",
+      category: "Laptop",
+      brand: "Apple",
+      price: 39990000,
+      image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1000&auto=format&fit=crop",
       badge: "Bán chạy",
-      specs: { screen: "6.8 inch", storage: "256GB" }
+      specs: { storage: "512GB", extra: "14 inch" }
     },
     {
       id: 3,
-      name: "iPhone 15",
+      name: "AirPods Pro 2",
+      category: "Tai nghe",
       brand: "Apple",
-      price: 22990000,
-      image: "https://images.unsplash.com/photo-1695048064977-96a99b4f0b24?q=80&w=1000&auto=format&fit=crop",
+      price: 5990000,
+      image: "https://images.unsplash.com/photo-1606220588913-b3aecb4b277c?q=80&w=1000&auto=format&fit=crop",
       badge: "Giảm 10%",
-      specs: { screen: "6.1 inch", storage: "128GB" }
+      specs: { storage: "Không dây", extra: "Chống ồn" }
     },
     {
       id: 4,
-      name: "Xiaomi 14 Pro",
-      brand: "Xiaomi",
-      price: 21990000,
-      image: "https://images.unsplash.com/photo-1598327105666-5b89351cb315?q=80&w=1000&auto=format&fit=crop",
+      name: "Samsung Galaxy Watch 6",
+      category: "Đồng hồ",
+      brand: "Samsung",
+      price: 6490000,
+      image: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?q=80&w=1000&auto=format&fit=crop",
       badge: "",
-      specs: { screen: "6.73 inch", storage: "256GB" }
+      specs: { storage: "44mm", extra: "Đo nhịp tim" }
+    },
+    {
+      id: 5,
+      name: "Sạc nhanh 20W",
+      category: "Phụ kiện",
+      brand: "Apple",
+      price: 590000,
+      image: "https://images.unsplash.com/photo-1615526675159-e248c3021d3f?q=80&w=1000&auto=format&fit=crop",
+      badge: "",
+      specs: { storage: "Type C", extra: "Chính hãng" }
+    },
+    {
+      id: 6,
+      name: "Samsung Galaxy S24 Ultra",
+      category: "Điện thoại",
+      brand: "Samsung",
+      price: 33990000,
+      image: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?q=80&w=1000&auto=format&fit=crop",
+      badge: "Hot",
+      specs: { storage: "256GB", extra: "AI Camera" }
     }
   ];
 

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ShoppingBag, User, Search, ArrowRight, Smartphone, Heart, ShoppingCart } from "lucide-react";
+import { ShoppingBag, User, Search, ArrowRight, Smartphone, Heart, ShoppingCart, Laptop, Headphones, Watch, Cable } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -13,7 +13,7 @@ interface Product {
   price: number;
   image: string;
   badge: string;
-  specs: { screen: string; storage: string };
+  specs: { storage: string; extra: string };
 }
 
 export default function HomePage() {
@@ -103,7 +103,7 @@ export default function HomePage() {
             transition={{ delay: 0.1 }}
             className="text-lg text-zinc-400 max-w-2xl mb-10"
           >
-            Khám phá các dòng điện thoại mới nhất với thiết kế tinh tế và hiệu năng vượt trội. Nâng tầm phong cách sống ngay hôm nay.
+            Khám phá các dòng điện thoại, laptop, đồng hồ và phụ kiện mới nhất với thiết kế tinh tế và hiệu năng vượt trội.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -117,6 +117,44 @@ export default function HomePage() {
               Khám phá ngay <ArrowRight className="w-4 h-4" />
             </button>
           </motion.div>
+        </div>
+      </div>
+
+      {/* Categories Navigation */}
+      <div className="bg-white border-b border-zinc-200 sticky top-[64px] z-40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex gap-8 overflow-x-auto py-4 scrollbar-hide items-center justify-start md:justify-center">
+            <button className="flex flex-col items-center gap-2 min-w-[72px] text-zinc-900 group">
+              <div className="w-12 h-12 rounded-2xl bg-zinc-100 group-hover:bg-zinc-200 transition-colors flex items-center justify-center">
+                <Smartphone className="w-6 h-6" />
+              </div>
+              <span className="text-xs font-semibold">Điện thoại</span>
+            </button>
+            <button className="flex flex-col items-center gap-2 min-w-[72px] text-zinc-500 hover:text-zinc-900 group">
+              <div className="w-12 h-12 rounded-2xl bg-zinc-50 group-hover:bg-zinc-100 transition-colors flex items-center justify-center">
+                <Laptop className="w-6 h-6" />
+              </div>
+              <span className="text-xs font-medium">Laptop</span>
+            </button>
+            <button className="flex flex-col items-center gap-2 min-w-[72px] text-zinc-500 hover:text-zinc-900 group">
+              <div className="w-12 h-12 rounded-2xl bg-zinc-50 group-hover:bg-zinc-100 transition-colors flex items-center justify-center">
+                <Headphones className="w-6 h-6" />
+              </div>
+              <span className="text-xs font-medium">Tai nghe</span>
+            </button>
+            <button className="flex flex-col items-center gap-2 min-w-[72px] text-zinc-500 hover:text-zinc-900 group">
+              <div className="w-12 h-12 rounded-2xl bg-zinc-50 group-hover:bg-zinc-100 transition-colors flex items-center justify-center">
+                <Watch className="w-6 h-6" />
+              </div>
+              <span className="text-xs font-medium">Đồng hồ</span>
+            </button>
+            <button className="flex flex-col items-center gap-2 min-w-[72px] text-zinc-500 hover:text-zinc-900 group">
+              <div className="w-12 h-12 rounded-2xl bg-zinc-50 group-hover:bg-zinc-100 transition-colors flex items-center justify-center">
+                <Cable className="w-6 h-6" />
+              </div>
+              <span className="text-xs font-medium">Phụ kiện</span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -179,7 +217,7 @@ export default function HomePage() {
                   </h3>
                   <div className="text-sm text-zinc-500 mb-4 flex gap-3">
                     <span className="bg-zinc-100 px-2 py-1 rounded">{product.specs.storage}</span>
-                    <span className="bg-zinc-100 px-2 py-1 rounded">{product.specs.screen}</span>
+                    <span className="bg-zinc-100 px-2 py-1 rounded">{product.specs.extra}</span>
                   </div>
                   <div className="mt-auto pt-4">
                     <p className="text-lg font-bold text-zinc-900 mb-4">
