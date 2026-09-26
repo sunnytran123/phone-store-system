@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ShoppingBag, User, Search, ArrowRight, Smartphone } from "lucide-react";
+import { ShoppingBag, User, Search, ArrowRight, Smartphone, Heart, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -150,6 +150,13 @@ export default function HomePage() {
                 )}
                 
                 <div className="aspect-[4/5] bg-zinc-100 overflow-hidden relative">
+                  <button 
+                    onClick={handleActionRequiresAuth}
+                    className="absolute top-4 right-4 z-10 p-2 bg-white/80 backdrop-blur-sm text-zinc-600 hover:text-red-500 rounded-full hover:bg-white transition-all opacity-0 group-hover:opacity-100 duration-300"
+                    title="Thêm vào yêu thích"
+                  >
+                    <Heart className="w-5 h-5" />
+                  </button>
                   <div className="absolute inset-0 flex items-center justify-center text-zinc-300">
                     <Smartphone className="w-20 h-20 opacity-20" />
                   </div>
@@ -178,12 +185,21 @@ export default function HomePage() {
                     <p className="text-lg font-bold text-zinc-900 mb-4">
                       {formatPrice(product.price)}
                     </p>
-                    <button 
-                      onClick={handleActionRequiresAuth}
-                      className="w-full bg-zinc-900 text-white py-2.5 rounded-xl font-medium hover:bg-zinc-800 transition-colors opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 duration-300 flex items-center justify-center gap-2"
-                    >
-                      <ShoppingBag className="w-4 h-4" /> Mua ngay
-                    </button>
+                    <div className="flex gap-2 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 duration-300">
+                      <button 
+                        onClick={handleActionRequiresAuth}
+                        className="flex-1 bg-zinc-900 text-white py-2.5 rounded-xl font-medium hover:bg-zinc-800 transition-colors flex items-center justify-center gap-2"
+                      >
+                        Mua ngay
+                      </button>
+                      <button 
+                        onClick={handleActionRequiresAuth}
+                        className="w-12 h-[44px] shrink-0 bg-zinc-100 border border-zinc-200 text-zinc-900 rounded-xl flex items-center justify-center hover:bg-zinc-200 transition-colors"
+                        title="Thêm vào giỏ hàng"
+                      >
+                        <ShoppingCart className="w-5 h-5" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </motion.div>
