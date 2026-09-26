@@ -156,7 +156,7 @@ export default function CartPage() {
                       </div>
                       
                       <div className="mt-auto flex items-end justify-between">
-                        <span className="font-bold text-xl text-red-600 tracking-tight">{formatPrice(item.price)}</span>
+                        <span className="font-bold text-base text-red-600 tracking-tight">{formatPrice(item.price)}</span>
                         
                         <div className="flex items-center gap-4 bg-zinc-50 rounded-xl border border-zinc-200 p-1">
                           <button 
@@ -230,7 +230,7 @@ export default function CartPage() {
                 <div className="border-t border-zinc-200 pt-4 mb-6">
                   <div className="flex justify-between items-end mb-1">
                     <span className="font-bold text-zinc-900 text-[15px]">Tổng cộng</span>
-                    <span className="text-2xl font-black text-red-600 tracking-tight">{formatPrice(total)}</span>
+                    <span className="text-lg font-bold text-red-600 tracking-tight">{formatPrice(total)}</span>
                   </div>
                   <p className="text-[11px] text-right text-zinc-500">(Đã bao gồm VAT)</p>
                 </div>
