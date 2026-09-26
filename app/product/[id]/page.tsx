@@ -24,13 +24,13 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   
-  // Selections
+
   const [selectedColor, setSelectedColor] = useState(0);
   const [selectedCapacity, setSelectedCapacity] = useState(0);
   const [selectedService, setSelectedService] = useState(0);
   const [selectedPromo, setSelectedPromo] = useState(0);
   
-  // Carousel state
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -51,7 +51,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
     if (!product) return;
     const timer = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % images.length);
-    }, 4000); // Auto-scroll every 4 seconds
+    }, 4000);
     return () => clearInterval(timer);
   }, [product, images.length]);
 
@@ -93,14 +93,12 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
   return (
     <div className="min-h-screen bg-zinc-50 pb-20 font-sans text-zinc-900">
 
-      {/* Breadcrumb */}
       <div className="max-w-[1200px] mx-auto px-4 py-4 text-sm text-zinc-500 flex items-center gap-2">
         <Link href="/" className="hover:text-zinc-900">Điện thoại</Link> <ChevronRight className="w-3 h-3 text-zinc-400" /> 
         <span className="text-zinc-900 font-medium">{product.name}</span>
       </div>
 
       <div className="max-w-[1200px] mx-auto px-4">
-        {/* Title */}
         <div className="flex flex-col sm:flex-row sm:items-end gap-2 sm:gap-4 mb-6 border-b border-zinc-200 pb-4">
           <h1 className="text-[26px] font-bold text-zinc-900">{product.category} {product.name}</h1>
           <div className="text-sm text-zinc-500 mb-1.5 bg-zinc-100 px-2 py-0.5 rounded-full">Đã bán 1,2k</div>
@@ -108,10 +106,8 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
 
         <div className="flex flex-col lg:flex-row gap-8">
           
-          {/* LEFT COLUMN - 60% */}
           <div className="w-full lg:w-[60%] flex flex-col gap-6">
             
-            {/* Image Gallery Box */}
             <div className="bg-white rounded-2xl p-6 shadow-sm border border-zinc-200 flex flex-col items-center">
               <div className="w-full max-w-[500px] aspect-[4/3] flex items-center justify-center p-4 relative mb-6 group overflow-hidden">
                 <button 
@@ -121,7 +117,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                   <ChevronLeft className="w-6 h-6" />
                 </button>
                 
-                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img 
                   src={images[currentImageIndex]} 
                   alt={product.name} 
@@ -142,14 +137,12 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                     onClick={() => setCurrentImageIndex(index)}
                     className={`w-16 h-16 border rounded-xl cursor-pointer p-2 flex items-center justify-center transition-colors ${currentImageIndex === index ? 'border-zinc-900 shadow-sm ring-1 ring-zinc-900' : 'border-zinc-200 hover:border-zinc-400'}`}
                   >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={img} alt={`thumb ${index}`} className="max-w-full max-h-full object-contain" />
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Commitments */}
             <div className="bg-white rounded-2xl p-6 shadow-sm border border-zinc-200">
               <h3 className="font-bold text-zinc-900 mb-5 text-lg">PhoneStore cam kết</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-y-5 gap-x-6">
@@ -168,7 +161,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
               </div>
             </div>
 
-            {/* Technical Specs */}
             <div className="bg-white rounded-2xl p-0 shadow-sm border border-zinc-200 mt-2 overflow-hidden">
               <div className="p-4 border-b border-zinc-200 flex gap-4 bg-zinc-50/50">
                 <div className="px-5 py-2.5 bg-zinc-900 text-white rounded-lg font-medium text-sm shadow-sm inline-block">Thông số kỹ thuật</div>
@@ -215,13 +207,10 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
 
           </div>
 
-          {/* RIGHT COLUMN - 40% */}
           <div className="w-full lg:w-[40%] flex flex-col gap-5">
             
-            {/* Main Selection Box */}
             <div className="bg-white rounded-2xl p-5 shadow-sm border border-zinc-200">
               
-              {/* Capacity Selection */}
               {product.capacities && product.capacities.length > 0 && (
                 <div className="mb-5">
                   <div className="text-[13px] font-semibold text-zinc-900 mb-2.5">Dung lượng</div>
@@ -243,7 +232,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 </div>
               )}
 
-              {/* Color Selection */}
               {product.colors && product.colors.length > 0 && (
                 <div className="mb-5">
                   <div className="text-[13px] font-semibold text-zinc-900 mb-2.5">Màu sắc</div>
@@ -269,7 +257,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 </div>
               )}
 
-              {/* Promo Banner Premium Style */}
               <div className="rounded-xl overflow-hidden flex flex-col gap-0.5 mb-5 border border-zinc-200">
                 <div className="bg-zinc-900 text-white p-3">
                   <div className="font-bold text-base">GIẢM THÊM 500.000₫</div>
@@ -285,7 +272,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 <span className="text-sm text-zinc-400 line-through font-medium">{formatPrice(product.price * 1.1)}</span>
               </div>
 
-              {/* Service Packages */}
               <div className="mb-5 border border-zinc-200 rounded-xl overflow-hidden bg-white">
                 <div className="bg-zinc-50 p-3 border-b border-zinc-200 text-[13px] font-bold text-zinc-900">
                   Gói dịch vụ
@@ -335,7 +321,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 </div>
               </div>
 
-              {/* Promotions / Vouchers */}
               <div className="mb-6 border border-zinc-200 rounded-xl overflow-hidden bg-white">
                 <div className="bg-zinc-50 p-3 border-b border-zinc-200">
                   <div className="font-bold text-zinc-900 text-sm mb-0.5">Khuyến mãi</div>
@@ -386,7 +371,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 </div>
               </div>
 
-              {/* Action Buttons */}
               <div className="flex flex-col gap-2.5 pt-1 border-t border-zinc-100">
                 <button 
                   onClick={handleActionRequiresAuth}
@@ -408,7 +392,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
         </div>
       </div>
 
-      {/* Auth Dialog */}
       {showAuthDialog && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="bg-white rounded-2xl p-6 w-[90%] max-w-[400px] shadow-2xl animate-in zoom-in-95 duration-200">

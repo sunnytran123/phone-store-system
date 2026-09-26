@@ -12,7 +12,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Mock verification
     if (email === 'admin@phonestore.com' && password === '123456') {
       return NextResponse.json({
         success: true,

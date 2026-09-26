@@ -7,7 +7,6 @@ export default function Footer() {
       <div className="max-w-[1200px] mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           
-          {/* Column 1: About */}
           <div>
             <div className="flex items-center gap-2 mb-6">
               <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
@@ -34,7 +33,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Customer Service */}
           <div>
             <h3 className="font-bold text-white text-base mb-6 uppercase tracking-wider">Hỗ trợ khách hàng</h3>
             <ul className="flex flex-col gap-3 text-sm">
@@ -47,7 +45,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: About Company */}
           <div>
             <h3 className="font-bold text-white text-base mb-6 uppercase tracking-wider">Về PhoneStore</h3>
             <ul className="flex flex-col gap-3 text-sm">
@@ -59,7 +56,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Trust & Social */}
           <div>
             <h3 className="font-bold text-white text-base mb-6 uppercase tracking-wider">Thanh toán</h3>
             <div className="flex gap-2 mb-8">
@@ -96,7 +92,6 @@ export default function Footer() {
 
         </div>
 
-        {/* Bottom */}
         <div className="pt-8 border-t border-zinc-800 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
           <p>© 2026 PhoneStore. Tất cả quyền được bảo lưu.</p>
           <div className="flex gap-6">

@@ -51,7 +51,6 @@ export default function Header() {
         </div>
       </nav>
 
-      {/* Auth Dialog */}
       {showAuthDialog && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="bg-white rounded-2xl p-6 w-[90%] max-w-[400px] shadow-2xl animate-in zoom-in-95 duration-200">

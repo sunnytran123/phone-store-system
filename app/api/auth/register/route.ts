@@ -19,7 +19,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Mock successful registration
     return NextResponse.json({
       success: true,
       message: 'Đăng ký tài khoản thành công!',

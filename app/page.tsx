@@ -38,7 +38,6 @@ export default function HomePage() {
   }, []);
 
   const handleActionRequiresAuth = () => {
-    // Check if user is logged in (mock logic)
     const isLoggedIn = false; // Mocking logged out state
     
     if (!isLoggedIn) {
@@ -52,7 +51,6 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-zinc-50 font-sans text-zinc-900">
-      {/* Hero Section */}
       <div className="bg-zinc-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 flex flex-col items-center text-center">
           <motion.h1 
@@ -87,11 +85,9 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Main Content with Sidebar */}
       <div id="products" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="flex flex-col lg:flex-row gap-8">
           
-          {/* Sidebar Filters */}
           <div className="w-full lg:w-64 shrink-0">
             <div className="bg-white border border-zinc-200 rounded-2xl p-6 sticky top-[88px]">
               <div className="flex items-center justify-between mb-6">
@@ -124,7 +120,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Product Grid Area */}
           <div className="flex-1">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
               <div>
@@ -175,9 +170,7 @@ export default function HomePage() {
                     <div className="absolute inset-0 flex items-center justify-center text-zinc-300">
                       <Smartphone className="w-16 h-16 opacity-20" />
                     </div>
-                    {/* Using a solid background placeholder since unsplash images can be slow or blocked sometimes, but keeping img tag for structure */}
                     <div className="absolute inset-0 w-full h-full group-hover:scale-105 transition-transform duration-500 flex items-center justify-center p-6">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img 
                         src={product.image} 
                         alt={product.name} 
@@ -200,7 +193,6 @@ export default function HomePage() {
                     <span className="bg-zinc-100 px-2 py-0.5 rounded">{product.specs.extra}</span>
                   </div>
                   
-                  {/* Color variations dots */}
                   {product.colors && product.colors.length > 0 && (
                     <div className="flex gap-1.5 mb-2">
                       {product.colors.map((color, i) => (
@@ -240,7 +232,6 @@ export default function HomePage() {
                   })()}
                 </div>
                 
-                {/* Load More Button */}
                 {products.length > visibleCount && (
                   <div className="flex justify-center mt-12">
                     <button
@@ -257,7 +248,6 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Footer minimal */}
       <footer className="bg-white border-t border-zinc-200 mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-2">
@@ -272,7 +262,6 @@ export default function HomePage() {
         </div>
       </footer>
 
-      {/* Custom Auth Dialog */}
       {showAuthModal && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-zinc-900/40 backdrop-blur-sm">
           <motion.div 
