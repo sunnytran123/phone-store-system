@@ -37,12 +37,18 @@ export default function HomePage() {
       .finally(() => setLoading(false));
   }, []);
 
-  const handleActionRequiresAuth = () => {
-    const isLoggedIn = false; // Mocking logged out state
-    
-    if (!isLoggedIn) {
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (!localStorage.getItem("user")) {
       setShowAuthModal(true);
+    } else {
+      alert("Đã thêm sản phẩm vào giỏ hàng!");
     }
+  };
+
+  const handleBuyNow = (e: React.MouseEvent, productId: number) => {
+    e.preventDefault();
+    window.location.href = `/product/${productId}`;
   };
 
   const formatPrice = (price: number) => {
@@ -160,7 +166,7 @@ export default function HomePage() {
                 
                 <div className="aspect-square bg-zinc-100 overflow-hidden relative group-hover:bg-zinc-50 transition-colors">
                   <button 
-                    onClick={handleActionRequiresAuth}
+                    onClick={handleAddToCart}
                     className="absolute top-3 right-3 z-10 p-2 bg-white/80 backdrop-blur-sm text-zinc-600 hover:text-red-500 rounded-full hover:bg-white transition-all opacity-0 group-hover:opacity-100 duration-300 shadow-sm"
                     title="Thêm vào yêu thích"
                   >
@@ -212,13 +218,13 @@ export default function HomePage() {
                     </p>
                     <div className="flex gap-2 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 duration-300">
                       <button 
-                        onClick={handleActionRequiresAuth}
+                        onClick={(e) => handleBuyNow(e, product.id)}
                         className="flex-1 bg-zinc-900 text-white py-2 rounded-xl text-sm font-medium hover:bg-zinc-800 transition-colors flex items-center justify-center gap-2"
                       >
                         Mua ngay
                       </button>
                       <button 
-                        onClick={handleActionRequiresAuth}
+                        onClick={handleAddToCart}
                         className="w-10 h-10 shrink-0 bg-zinc-100 border border-zinc-200 text-zinc-900 rounded-xl flex items-center justify-center hover:bg-zinc-200 transition-colors"
                         title="Thêm vào giỏ hàng"
                       >

@@ -69,8 +69,21 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
 
   const [showAuthDialog, setShowAuthDialog] = useState(false);
 
-  const handleActionRequiresAuth = () => {
-    setShowAuthDialog(true);
+  const handleAddToCart = () => {
+    if (!localStorage.getItem("user")) {
+      setShowAuthDialog(true);
+    } else {
+      // Logic add to cart here
+      alert("Đã thêm sản phẩm vào giỏ hàng thành công!");
+    }
+  };
+
+  const handleBuyNow = () => {
+    if (!localStorage.getItem("user")) {
+      setShowAuthDialog(true);
+    } else {
+      router.push("/checkout");
+    }
   };
 
   if (loading) {
@@ -373,7 +386,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
 
               <div className="flex flex-col gap-2.5 pt-1 border-t border-zinc-100">
                 <button 
-                  onClick={handleActionRequiresAuth}
+                  onClick={handleBuyNow}
                   className="w-full bg-zinc-900 text-white py-3 rounded-xl text-center shadow-md shadow-zinc-200 hover:bg-zinc-800 transition-all active:scale-[0.98]"
                 >
                   <div className="font-bold text-base uppercase tracking-wide">Mua ngay</div>
@@ -381,7 +394,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 </button>
 
                 <button 
-                  onClick={handleActionRequiresAuth}
+                  onClick={handleAddToCart}
                   className="w-full bg-zinc-50 border border-zinc-300 text-zinc-900 py-3 rounded-xl font-bold text-[13px] uppercase flex items-center justify-center gap-2 hover:bg-zinc-100 transition-all active:scale-[0.98]"
                 >
                   <ShoppingCart className="w-4 h-4" /> Thêm vào giỏ
