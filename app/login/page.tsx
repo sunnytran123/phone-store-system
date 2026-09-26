@@ -30,6 +30,8 @@ export default function LoginPage() {
       if (!data.success) {
         setError(data.message);
       } else {
+        localStorage.setItem("user", JSON.stringify(data.user));
+        window.dispatchEvent(new Event("auth-change"));
         router.push("/");
       }
     } catch (err) {

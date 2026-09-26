@@ -3,7 +3,8 @@ import { NextResponse } from 'next/server';
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { email, password } = body;
+    const email = body.email?.trim().toLowerCase();
+    const password = body.password?.trim();
 
     if (!email || !password) {
       return NextResponse.json(
