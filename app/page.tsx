@@ -208,26 +208,30 @@ export default function HomePage() {
                   >
                     <Heart className="w-4 h-4" />
                   </button>
-                  <div className="absolute inset-0 flex items-center justify-center text-zinc-300">
-                    <Smartphone className="w-16 h-16 opacity-20" />
-                  </div>
-                  {/* Using a solid background placeholder since unsplash images can be slow or blocked sometimes, but keeping img tag for structure */}
-                  <div className="absolute inset-0 w-full h-full group-hover:scale-105 transition-transform duration-500 flex items-center justify-center p-6">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img 
-                      src={product.image} 
-                      alt={product.name} 
-                      className="w-full h-auto max-h-[80%] object-contain drop-shadow-xl mix-blend-multiply" 
-                      onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                    />
-                  </div>
+                  <Link href={`/product/${product.id}`}>
+                    <div className="absolute inset-0 flex items-center justify-center text-zinc-300">
+                      <Smartphone className="w-16 h-16 opacity-20" />
+                    </div>
+                    {/* Using a solid background placeholder since unsplash images can be slow or blocked sometimes, but keeping img tag for structure */}
+                    <div className="absolute inset-0 w-full h-full group-hover:scale-105 transition-transform duration-500 flex items-center justify-center p-6">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img 
+                        src={product.image} 
+                        alt={product.name} 
+                        className="w-full h-auto max-h-[80%] object-contain drop-shadow-xl mix-blend-multiply" 
+                        onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                      />
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="p-4 sm:p-5 flex-1 flex flex-col">
                   <div className="text-[11px] text-zinc-500 font-medium mb-1 uppercase tracking-wider">{product.brand}</div>
-                  <h3 className="text-base font-bold text-zinc-900 mb-2 truncate">
-                    {product.name}
-                  </h3>
+                  <Link href={`/product/${product.id}`}>
+                    <h3 className="text-base font-bold text-zinc-900 mb-2 truncate hover:text-zinc-600 transition-colors">
+                      {product.name}
+                    </h3>
+                  </Link>
                   <div className="text-xs text-zinc-500 mb-3 flex flex-wrap gap-2">
                     <span className="bg-zinc-100 px-2 py-0.5 rounded">{product.specs.storage}</span>
                     <span className="bg-zinc-100 px-2 py-0.5 rounded">{product.specs.extra}</span>
