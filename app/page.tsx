@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ShoppingBag, User, Search, ArrowRight, Smartphone, Heart, ShoppingCart, Laptop, Headphones, Watch, Cable } from "lucide-react";
+import { ShoppingBag, User, Search, ArrowRight, Smartphone, Heart, ShoppingCart, Laptop, Headphones, Watch, Cable, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -22,6 +22,7 @@ export default function HomePage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [visibleCount, setVisibleCount] = useState(6);
   
   const router = useRouter();
@@ -42,7 +43,8 @@ export default function HomePage() {
     if (!localStorage.getItem("user")) {
       setShowAuthModal(true);
     } else {
-      alert("Đã thêm sản phẩm vào giỏ hàng!");
+      setShowSuccessModal(true);
+      setTimeout(() => setShowSuccessModal(false), 2000);
     }
   };
 
@@ -299,6 +301,29 @@ export default function HomePage() {
                 Hủy bỏ
               </button>
             </div>
+          </motion.div>
+        </div>
+      )}
+
+      {showSuccessModal && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-zinc-900/40 backdrop-blur-sm">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="bg-white rounded-2xl p-6 w-[90%] max-w-[320px] shadow-2xl flex flex-col items-center text-center"
+          >
+            <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mb-4">
+              <CheckCircle2 className="w-7 h-7 text-green-600" />
+            </div>
+            <h3 className="text-lg font-bold text-zinc-900 mb-1">Thành công!</h3>
+            <p className="text-zinc-500 text-[13px] mb-5">Đã thêm sản phẩm vào giỏ hàng.</p>
+            <button 
+              onClick={() => setShowSuccessModal(false)}
+              className="w-full py-2.5 text-sm font-medium text-white bg-zinc-900 rounded-xl hover:bg-zinc-800 transition-colors shadow-md"
+            >
+              Tiếp tục mua sắm
+            </button>
           </motion.div>
         </div>
       )}

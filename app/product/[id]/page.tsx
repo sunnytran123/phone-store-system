@@ -68,13 +68,14 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
   };
 
   const [showAuthDialog, setShowAuthDialog] = useState(false);
+  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
 
   const handleAddToCart = () => {
     if (!localStorage.getItem("user")) {
       setShowAuthDialog(true);
     } else {
-      // Logic add to cart here
-      alert("Đã thêm sản phẩm vào giỏ hàng thành công!");
+      setShowSuccessDialog(true);
+      setTimeout(() => setShowSuccessDialog(false), 2000);
     }
   };
 
@@ -424,6 +425,24 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 Đăng nhập ngay
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {showSuccessDialog && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="bg-white rounded-2xl p-6 w-[90%] max-w-[320px] shadow-2xl animate-in zoom-in-95 duration-200 flex flex-col items-center text-center">
+            <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mb-4">
+              <CheckCircle2 className="w-7 h-7 text-green-600" />
+            </div>
+            <h3 className="text-lg font-bold text-zinc-900 mb-1">Thành công!</h3>
+            <p className="text-zinc-500 text-[13px] mb-5">Đã thêm sản phẩm vào giỏ hàng.</p>
+            <button 
+              onClick={() => setShowSuccessDialog(false)}
+              className="w-full py-2.5 text-sm font-medium text-white bg-zinc-900 rounded-xl hover:bg-zinc-800 transition-colors shadow-md"
+            >
+              Tiếp tục mua sắm
+            </button>
           </div>
         </div>
       )}
