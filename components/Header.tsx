@@ -69,8 +69,11 @@ export default function Header() {
             </div>
 
             <div className="flex items-center gap-4">
-              <Link href="/cart" className="text-zinc-600 hover:text-zinc-900 transition-colors">
+              <Link href="/cart" className="text-zinc-600 hover:text-zinc-900 transition-colors relative">
                 <ShoppingBag className="w-5 h-5" />
+                <span className="absolute -top-1.5 -right-2 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white shadow-sm">
+                  1
+                </span>
               </Link>
               {user ? (
                 <div className="relative group cursor-pointer">
