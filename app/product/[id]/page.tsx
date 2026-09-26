@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, use } from "react";
-import { ArrowLeft, ShoppingCart, ShieldCheck, Truck, RotateCcw, ChevronRight, CheckCircle2, Ticket } from "lucide-react";
+import { ArrowLeft, ShoppingCart, ShieldCheck, Truck, RotateCcw, ChevronRight, ChevronLeft, CheckCircle2, Ticket } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -29,6 +29,9 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
   const [selectedCapacity, setSelectedCapacity] = useState(0);
   const [selectedService, setSelectedService] = useState(0);
   const [selectedPromo, setSelectedPromo] = useState(0);
+  
+  // Carousel state
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     fetch("/api/products")
@@ -41,6 +44,24 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
       })
       .finally(() => setLoading(false));
   }, [resolvedParams.id]);
+
+  const images = product ? [product.image, product.image, product.image, product.image, product.image] : [];
+
+  useEffect(() => {
+    if (!product) return;
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    }, 4000); // Auto-scroll every 4 seconds
+    return () => clearInterval(timer);
+  }, [product, images.length]);
+
+  const handleNextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const handlePrevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
 
   const formatPrice = (price: number) => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " ₫";
@@ -71,25 +92,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
 
   return (
     <div className="min-h-screen bg-zinc-50 pb-20 font-sans text-zinc-900">
-      {/* Top Header */}
-      <div className="bg-white/80 backdrop-blur-md border-b border-zinc-200 h-16 flex items-center sticky top-0 z-50">
-        <div className="max-w-[1200px] w-full mx-auto px-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-full bg-zinc-100 flex items-center justify-center group-hover:bg-zinc-200 transition-colors">
-              <ArrowLeft className="w-4 h-4 text-zinc-600" />
-            </div>
-            <span className="font-bold text-xl text-zinc-900 tracking-tight">PhoneStore</span>
-          </Link>
-          <div className="flex gap-4">
-            <button className="flex items-center gap-2 bg-zinc-100 hover:bg-zinc-200 transition-colors px-4 py-2 rounded-lg text-sm font-medium">
-              <Ticket className="w-4 h-4 text-zinc-700" /> Voucher
-            </button>
-            <button className="flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 text-white transition-colors px-4 py-2 rounded-lg text-sm font-medium">
-              <ShoppingCart className="w-4 h-4" /> Giỏ hàng
-            </button>
-          </div>
-        </div>
-      </div>
 
       {/* Breadcrumb */}
       <div className="max-w-[1200px] mx-auto px-4 py-4 text-sm text-zinc-500 flex items-center gap-2">
@@ -111,19 +113,37 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
             
             {/* Image Gallery Box */}
             <div className="bg-white rounded-2xl p-6 shadow-sm border border-zinc-200 flex flex-col items-center">
-              <div className="w-full max-w-[500px] aspect-[4/3] flex items-center justify-center p-4 relative mb-6">
+              <div className="w-full max-w-[500px] aspect-[4/3] flex items-center justify-center p-4 relative mb-6 group overflow-hidden">
+                <button 
+                  onClick={handlePrevImage}
+                  className="absolute left-2 z-10 w-10 h-10 bg-white/80 backdrop-blur-md rounded-full shadow-md flex items-center justify-center text-zinc-700 hover:text-zinc-900 hover:bg-white transition-all opacity-0 group-hover:opacity-100"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img 
-                  src={product.image} 
+                  src={images[currentImageIndex]} 
                   alt={product.name} 
-                  className="max-w-full max-h-full object-contain drop-shadow-xl" 
+                  className="max-w-full max-h-full object-contain drop-shadow-xl transition-all duration-500" 
                 />
+
+                <button 
+                  onClick={handleNextImage}
+                  className="absolute right-2 z-10 w-10 h-10 bg-white/80 backdrop-blur-md rounded-full shadow-md flex items-center justify-center text-zinc-700 hover:text-zinc-900 hover:bg-white transition-all opacity-0 group-hover:opacity-100"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
               </div>
               <div className="flex gap-3 w-full justify-center overflow-x-auto pb-2">
-                {[1, 2, 3, 4, 5].map((item) => (
-                  <div key={item} className={`w-16 h-16 border rounded-xl cursor-pointer p-2 flex items-center justify-center transition-colors ${item === 1 ? 'border-zinc-900 shadow-sm' : 'border-zinc-200 hover:border-zinc-400'}`}>
+                {images.map((img, index) => (
+                  <div 
+                    key={index} 
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`w-16 h-16 border rounded-xl cursor-pointer p-2 flex items-center justify-center transition-colors ${currentImageIndex === index ? 'border-zinc-900 shadow-sm ring-1 ring-zinc-900' : 'border-zinc-200 hover:border-zinc-400'}`}
+                  >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={product.image} alt="thumb" className="max-w-full max-h-full object-contain" />
+                    <img src={img} alt={`thumb ${index}`} className="max-w-full max-h-full object-contain" />
                   </div>
                 ))}
               </div>
