@@ -61,6 +61,36 @@ export async function GET() {
       image: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?q=80&w=1000&auto=format&fit=crop",
       badge: "Hot",
       specs: { storage: "256GB", extra: "AI Camera" }
+    },
+    {
+      id: 7,
+      name: "iPad Air 5",
+      category: "Tablet",
+      brand: "Apple",
+      price: 15990000,
+      image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?q=80&w=1000&auto=format&fit=crop",
+      badge: "",
+      specs: { storage: "64GB", extra: "M1 Chip" }
+    },
+    {
+      id: 8,
+      name: "Sony WH-1000XM5",
+      category: "Tai nghe",
+      brand: "Sony",
+      price: 7990000,
+      image: "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?q=80&w=1000&auto=format&fit=crop",
+      badge: "Giảm 5%",
+      specs: { storage: "Chụp tai", extra: "Chống ồn ANC" }
+    },
+    {
+      id: 9,
+      name: "Xiaomi 14 Pro",
+      category: "Điện thoại",
+      brand: "Xiaomi",
+      price: 21990000,
+      image: "https://images.unsplash.com/photo-1598327105666-5b89351cb315?q=80&w=1000&auto=format&fit=crop",
+      badge: "",
+      specs: { storage: "256GB", extra: "Leica Camera" }
     }
   ];
 

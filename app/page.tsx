@@ -20,6 +20,8 @@ export default function HomePage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(6);
+  
   const router = useRouter();
 
   useEffect(() => {
@@ -120,60 +122,69 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Categories Navigation */}
-      <div className="bg-white border-b border-zinc-200 sticky top-[64px] z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex gap-8 overflow-x-auto py-4 scrollbar-hide items-center justify-start md:justify-center">
-            <button className="flex flex-col items-center gap-2 min-w-[72px] text-zinc-900 group">
-              <div className="w-12 h-12 rounded-2xl bg-zinc-100 group-hover:bg-zinc-200 transition-colors flex items-center justify-center">
-                <Smartphone className="w-6 h-6" />
-              </div>
-              <span className="text-xs font-semibold">Điện thoại</span>
-            </button>
-            <button className="flex flex-col items-center gap-2 min-w-[72px] text-zinc-500 hover:text-zinc-900 group">
-              <div className="w-12 h-12 rounded-2xl bg-zinc-50 group-hover:bg-zinc-100 transition-colors flex items-center justify-center">
-                <Laptop className="w-6 h-6" />
-              </div>
-              <span className="text-xs font-medium">Laptop</span>
-            </button>
-            <button className="flex flex-col items-center gap-2 min-w-[72px] text-zinc-500 hover:text-zinc-900 group">
-              <div className="w-12 h-12 rounded-2xl bg-zinc-50 group-hover:bg-zinc-100 transition-colors flex items-center justify-center">
-                <Headphones className="w-6 h-6" />
-              </div>
-              <span className="text-xs font-medium">Tai nghe</span>
-            </button>
-            <button className="flex flex-col items-center gap-2 min-w-[72px] text-zinc-500 hover:text-zinc-900 group">
-              <div className="w-12 h-12 rounded-2xl bg-zinc-50 group-hover:bg-zinc-100 transition-colors flex items-center justify-center">
-                <Watch className="w-6 h-6" />
-              </div>
-              <span className="text-xs font-medium">Đồng hồ</span>
-            </button>
-            <button className="flex flex-col items-center gap-2 min-w-[72px] text-zinc-500 hover:text-zinc-900 group">
-              <div className="w-12 h-12 rounded-2xl bg-zinc-50 group-hover:bg-zinc-100 transition-colors flex items-center justify-center">
-                <Cable className="w-6 h-6" />
-              </div>
-              <span className="text-xs font-medium">Phụ kiện</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Products Section */}
+      {/* Main Content with Sidebar */}
       <div id="products" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="flex justify-between items-end mb-8">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight text-zinc-900">Sản phẩm nổi bật</h2>
-            <p className="mt-1 text-sm text-zinc-500">Những mẫu điện thoại được yêu thích nhất</p>
-          </div>
-        </div>
+        <div className="flex flex-col lg:flex-row gap-8">
+          
+          {/* Sidebar Filters */}
+          <div className="w-full lg:w-64 shrink-0">
+            <div className="bg-white border border-zinc-200 rounded-2xl p-6 sticky top-[88px]">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="font-bold text-zinc-900 text-lg">Bộ lọc</h3>
+                <span className="text-xs text-zinc-500 cursor-pointer hover:text-zinc-900">Xóa bộ lọc</span>
+              </div>
 
-        {loading ? (
-          <div className="flex justify-center items-center py-20">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-zinc-900"></div>
+              <h4 className="font-semibold text-zinc-900 mb-4 text-sm">Danh mục</h4>
+              <ul className="space-y-3 mb-8">
+                <li><label className="flex items-center gap-3 cursor-pointer"><input type="checkbox" className="w-4 h-4 rounded border-zinc-300 text-zinc-900 focus:ring-zinc-900" /> <span className="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">Điện thoại</span></label></li>
+                <li><label className="flex items-center gap-3 cursor-pointer"><input type="checkbox" className="w-4 h-4 rounded border-zinc-300 text-zinc-900 focus:ring-zinc-900" /> <span className="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">Laptop</span></label></li>
+                <li><label className="flex items-center gap-3 cursor-pointer"><input type="checkbox" className="w-4 h-4 rounded border-zinc-300 text-zinc-900 focus:ring-zinc-900" /> <span className="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">Tai nghe</span></label></li>
+                <li><label className="flex items-center gap-3 cursor-pointer"><input type="checkbox" className="w-4 h-4 rounded border-zinc-300 text-zinc-900 focus:ring-zinc-900" /> <span className="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">Đồng hồ thông minh</span></label></li>
+                <li><label className="flex items-center gap-3 cursor-pointer"><input type="checkbox" className="w-4 h-4 rounded border-zinc-300 text-zinc-900 focus:ring-zinc-900" /> <span className="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">Phụ kiện</span></label></li>
+              </ul>
+              
+              <h4 className="font-semibold text-zinc-900 mb-4 text-sm">Mức giá</h4>
+              <ul className="space-y-3 mb-8">
+                <li><label className="flex items-center gap-3 cursor-pointer"><input type="checkbox" className="w-4 h-4 rounded border-zinc-300 text-zinc-900 focus:ring-zinc-900" /> <span className="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">Dưới 5.000.000đ</span></label></li>
+                <li><label className="flex items-center gap-3 cursor-pointer"><input type="checkbox" className="w-4 h-4 rounded border-zinc-300 text-zinc-900 focus:ring-zinc-900" /> <span className="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">5 - 15.000.000đ</span></label></li>
+                <li><label className="flex items-center gap-3 cursor-pointer"><input type="checkbox" className="w-4 h-4 rounded border-zinc-300 text-zinc-900 focus:ring-zinc-900" /> <span className="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">Trên 15.000.000đ</span></label></li>
+              </ul>
+
+              <h4 className="font-semibold text-zinc-900 mb-4 text-sm">Thương hiệu</h4>
+              <ul className="space-y-3">
+                <li><label className="flex items-center gap-3 cursor-pointer"><input type="checkbox" className="w-4 h-4 rounded border-zinc-300 text-zinc-900 focus:ring-zinc-900" /> <span className="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">Apple</span></label></li>
+                <li><label className="flex items-center gap-3 cursor-pointer"><input type="checkbox" className="w-4 h-4 rounded border-zinc-300 text-zinc-900 focus:ring-zinc-900" /> <span className="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">Samsung</span></label></li>
+                <li><label className="flex items-center gap-3 cursor-pointer"><input type="checkbox" className="w-4 h-4 rounded border-zinc-300 text-zinc-900 focus:ring-zinc-900" /> <span className="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">Xiaomi</span></label></li>
+              </ul>
+            </div>
           </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            {products.map((product, index) => (
+
+          {/* Product Grid Area */}
+          <div className="flex-1">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+              <div>
+                <h2 className="text-2xl font-bold tracking-tight text-zinc-900">Tất cả sản phẩm</h2>
+                <p className="mt-1 text-sm text-zinc-500">Hiển thị {products.length} kết quả</p>
+              </div>
+              <select className="border border-zinc-200 rounded-xl px-4 py-2.5 text-sm font-medium text-zinc-700 bg-white focus:outline-none focus:ring-2 focus:ring-zinc-900 cursor-pointer min-w-[180px]">
+                <option>Mới nhất</option>
+                <option>Giá: Thấp đến Cao</option>
+                <option>Giá: Cao đến Thấp</option>
+                <option>Bán chạy nhất</option>
+              </select>
+            </div>
+
+            {loading ? (
+              <div className="flex justify-center items-center py-20">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-zinc-900"></div>
+              </div>
+            ) : (
+              <>
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
+                  {(() => {
+                    const currentProducts = products.slice(0, visibleCount);
+                    
+                    return currentProducts.map((product, index) => (
               <motion.div
                 key={product.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -187,63 +198,79 @@ export default function HomePage() {
                   </div>
                 )}
                 
-                <div className="aspect-[4/5] bg-zinc-100 overflow-hidden relative">
+                <div className="aspect-square bg-zinc-100 overflow-hidden relative group-hover:bg-zinc-50 transition-colors">
                   <button 
                     onClick={handleActionRequiresAuth}
-                    className="absolute top-4 right-4 z-10 p-2 bg-white/80 backdrop-blur-sm text-zinc-600 hover:text-red-500 rounded-full hover:bg-white transition-all opacity-0 group-hover:opacity-100 duration-300"
+                    className="absolute top-3 right-3 z-10 p-2 bg-white/80 backdrop-blur-sm text-zinc-600 hover:text-red-500 rounded-full hover:bg-white transition-all opacity-0 group-hover:opacity-100 duration-300 shadow-sm"
                     title="Thêm vào yêu thích"
                   >
-                    <Heart className="w-5 h-5" />
+                    <Heart className="w-4 h-4" />
                   </button>
                   <div className="absolute inset-0 flex items-center justify-center text-zinc-300">
-                    <Smartphone className="w-20 h-20 opacity-20" />
+                    <Smartphone className="w-16 h-16 opacity-20" />
                   </div>
                   {/* Using a solid background placeholder since unsplash images can be slow or blocked sometimes, but keeping img tag for structure */}
-                  <div className="absolute inset-0 w-full h-full group-hover:scale-105 transition-transform duration-500 bg-zinc-100 flex items-center justify-center p-8">
+                  <div className="absolute inset-0 w-full h-full group-hover:scale-105 transition-transform duration-500 flex items-center justify-center p-6">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img 
                       src={product.image} 
                       alt={product.name} 
-                      className="w-full h-auto drop-shadow-2xl mix-blend-multiply" 
+                      className="w-full h-auto max-h-[80%] object-contain drop-shadow-xl mix-blend-multiply" 
                       onError={(e) => { e.currentTarget.style.display = 'none'; }}
                     />
                   </div>
                 </div>
 
-                <div className="p-6 flex-1 flex flex-col">
-                  <div className="text-xs text-zinc-500 font-medium mb-1 uppercase tracking-wider">{product.brand}</div>
-                  <h3 className="text-lg font-bold text-zinc-900 mb-2 truncate">
+                <div className="p-4 sm:p-5 flex-1 flex flex-col">
+                  <div className="text-[11px] text-zinc-500 font-medium mb-1 uppercase tracking-wider">{product.brand}</div>
+                  <h3 className="text-base font-bold text-zinc-900 mb-2 truncate">
                     {product.name}
                   </h3>
-                  <div className="text-sm text-zinc-500 mb-4 flex gap-3">
-                    <span className="bg-zinc-100 px-2 py-1 rounded">{product.specs.storage}</span>
-                    <span className="bg-zinc-100 px-2 py-1 rounded">{product.specs.extra}</span>
+                  <div className="text-xs text-zinc-500 mb-3 flex flex-wrap gap-2">
+                    <span className="bg-zinc-100 px-2 py-0.5 rounded">{product.specs.storage}</span>
+                    <span className="bg-zinc-100 px-2 py-0.5 rounded">{product.specs.extra}</span>
                   </div>
-                  <div className="mt-auto pt-4">
-                    <p className="text-lg font-bold text-zinc-900 mb-4">
+                  <div className="mt-auto pt-2">
+                    <p className="text-lg font-bold text-zinc-900 mb-3">
                       {formatPrice(product.price)}
                     </p>
                     <div className="flex gap-2 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 duration-300">
                       <button 
                         onClick={handleActionRequiresAuth}
-                        className="flex-1 bg-zinc-900 text-white py-2.5 rounded-xl font-medium hover:bg-zinc-800 transition-colors flex items-center justify-center gap-2"
+                        className="flex-1 bg-zinc-900 text-white py-2 rounded-xl text-sm font-medium hover:bg-zinc-800 transition-colors flex items-center justify-center gap-2"
                       >
                         Mua ngay
                       </button>
                       <button 
                         onClick={handleActionRequiresAuth}
-                        className="w-12 h-[44px] shrink-0 bg-zinc-100 border border-zinc-200 text-zinc-900 rounded-xl flex items-center justify-center hover:bg-zinc-200 transition-colors"
+                        className="w-10 h-10 shrink-0 bg-zinc-100 border border-zinc-200 text-zinc-900 rounded-xl flex items-center justify-center hover:bg-zinc-200 transition-colors"
                         title="Thêm vào giỏ hàng"
                       >
-                        <ShoppingCart className="w-5 h-5" />
+                        <ShoppingCart className="w-4 h-4" />
                       </button>
                     </div>
                   </div>
                 </div>
               </motion.div>
-            ))}
+                    ));
+                  })()}
+                </div>
+                
+                {/* Load More Button */}
+                {products.length > visibleCount && (
+                  <div className="flex justify-center mt-12">
+                    <button
+                      onClick={() => setVisibleCount(prev => prev + 6)}
+                      className="bg-white border border-zinc-200 text-zinc-900 px-6 py-3 rounded-xl font-medium hover:bg-zinc-50 transition-colors shadow-sm"
+                    >
+                      Xem thêm {products.length - visibleCount} sản phẩm
+                    </button>
+                  </div>
+                )}
+              </>
+            )}
           </div>
-        )}
+        </div>
       </div>
 
       {/* Footer minimal */}
