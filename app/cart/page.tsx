@@ -227,19 +227,19 @@ export default function CartPage() {
                   )}
                 </div>
 
-                <div className="border-t border-zinc-200 pt-5 mb-8">
+                <div className="border-t border-zinc-200 pt-4 mb-6">
                   <div className="flex justify-between items-end mb-1">
-                    <span className="font-bold text-zinc-900">Tổng cộng</span>
-                    <span className="text-3xl font-black text-red-600 tracking-tight">{formatPrice(total)}</span>
+                    <span className="font-bold text-zinc-900 text-[15px]">Tổng cộng</span>
+                    <span className="text-2xl font-black text-red-600 tracking-tight">{formatPrice(total)}</span>
                   </div>
-                  <p className="text-xs text-right text-zinc-500">(Đã bao gồm VAT)</p>
+                  <p className="text-[11px] text-right text-zinc-500">(Đã bao gồm VAT)</p>
                 </div>
 
                 <button 
                   disabled={selectedItems.length === 0}
-                  className="w-full bg-zinc-900 text-white py-4 rounded-xl font-bold text-lg hover:bg-zinc-800 hover:shadow-lg transition-all shadow-md flex justify-center items-center gap-2 mb-4 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-zinc-900 disabled:hover:shadow-md"
+                  className="w-full bg-zinc-900 text-white py-3 rounded-xl font-bold text-[15px] hover:bg-zinc-800 hover:shadow-lg transition-all shadow-md flex justify-center items-center gap-2 mb-3 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-zinc-900 disabled:hover:shadow-md"
                 >
-                  Tiến hành thanh toán <ArrowRight className="w-5 h-5" />
+                  Tiến hành thanh toán <ArrowRight className="w-4 h-4" />
                 </button>
                 
                 <div className="flex items-center justify-center gap-2 text-xs text-zinc-500">
