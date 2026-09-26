@@ -14,6 +14,8 @@ interface Product {
   image: string;
   badge: string;
   specs: { storage: string; extra: string };
+  colors?: { name: string; hex: string }[];
+  capacities?: string[];
 }
 
 export default function HomePage() {
@@ -230,6 +232,21 @@ export default function HomePage() {
                     <span className="bg-zinc-100 px-2 py-0.5 rounded">{product.specs.storage}</span>
                     <span className="bg-zinc-100 px-2 py-0.5 rounded">{product.specs.extra}</span>
                   </div>
+                  
+                  {/* Color variations dots */}
+                  {product.colors && product.colors.length > 0 && (
+                    <div className="flex gap-1.5 mb-2">
+                      {product.colors.map((color, i) => (
+                        <div 
+                          key={i} 
+                          className="w-4 h-4 rounded-full border border-zinc-200/60 shadow-sm"
+                          style={{ backgroundColor: color.hex }}
+                          title={color.name}
+                        />
+                      ))}
+                    </div>
+                  )}
+
                   <div className="mt-auto pt-2">
                     <p className="text-lg font-bold text-zinc-900 mb-3">
                       {formatPrice(product.price)}
